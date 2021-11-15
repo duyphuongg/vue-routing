@@ -2,13 +2,23 @@
   <li>
     <h3>{{ name }}</h3>
     <div class="team-members">{{ memberCount }} Members</div>
-    <router-link :to="{name: 'TeamMembers', params: {teamId: teamId}}">View Members</router-link>
+    <router-link :to="linkToTeamMember">View Members</router-link>
   </li>
 </template>
 
 <script>
 export default {
   props: ['name', 'memberCount', 'teamId'],
+  computed: {
+    linkToTeamMember() {
+      return {
+        name: 'TeamMembers',
+        params: { teamId: this.teamId },
+        query: { sort: 'asc' },
+      };
+      // this.$route.push({name: "TeamMembers", params: {teamId: this.teamId}})
+    },
+  },
 };
 </script>
 
