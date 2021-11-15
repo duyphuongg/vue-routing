@@ -39,6 +39,9 @@ export default {
     this.teamName = team && team.name
     this.members = member
   },
+  methods: {
+    
+  },
 };
 </script>
 
