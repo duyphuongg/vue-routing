@@ -6,17 +6,11 @@
 </template>
 
 <script>
-import TeamsList from './components/teams/TeamsList.vue';
-import UsersList from './components/users/UsersList.vue';
 import TheNavigation from './components/nav/TheNavigation.vue';
 
 export default {
   components: {
     TheNavigation,
-    // eslint-disable-next-line vue/no-unused-components
-    TeamsList,
-    // eslint-disable-next-line vue/no-unused-components
-    UsersList,
   },
   data() {
     return {

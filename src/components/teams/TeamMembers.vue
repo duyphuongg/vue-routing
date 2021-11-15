@@ -21,12 +21,23 @@ export default {
   },
   data() {
     return {
-      teamName: 'Test',
-      members: [
-        { id: 'u1', fullName: 'Max Schwarz', role: 'Engineer' },
-        { id: 'u2', fullName: 'Max Schwarz', role: 'Engineer' },
-      ],
+      teamName: '',
+      members: [],
     };
+  },
+  inject: ["teams", "users"],
+  created () {
+    console.log(this.$route);
+    const teamId = this.$route.params.teamId
+    const team = this.teams.find(team => team.id == teamId)
+    const member = this.users.reduce((acc, curr) => {
+      if(team && team.members.includes(curr['id'])){
+        acc = [...acc, curr]
+      }
+      return acc
+    }, [])
+    this.teamName = team && team.name
+    this.members = member
   },
 };
 </script>
