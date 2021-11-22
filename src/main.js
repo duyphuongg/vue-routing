@@ -20,6 +20,10 @@ const router = createRouter({
         default: UsersList,
         footer: UserFooter,
       },
+      beforeEnter(to, from, next) {
+        console.log('User beforeEnter', to, from);
+        next()
+      }
     },
     {
       name: 'Teams',
@@ -42,7 +46,28 @@ const router = createRouter({
     { path: '/:notFound(.*)', component: NotFound },
   ],
   linkActiveClass: 'active',
+  scrollBehavior(to, from, savedPosition) {
+    // console.log(savedPosition);
+    if (savedPosition) {
+      return savedPosition
+    }
+    return {
+      left: 0,
+      top: 0
+    }
+  }
 });
+
+router.beforeEach((to, from, next) => {
+  console.log("Global beforeEach");
+  console.log(to, from);
+  // if (to.name === "TeamMembers") {
+  //   next()
+  // } else {
+  //   next({name: "TeamMembers", params: {teamId: "t2"}})
+  // }
+  next()
+})
 
 const app = createApp(App);
 

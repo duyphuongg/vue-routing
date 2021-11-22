@@ -26,6 +26,10 @@ export default {
       this.$router.forward()
     }
   },
+  beforeRouteEnter (to, from, next) {
+    console.log('User cmp beforeRouteEnter', to, from);
+    next()
+  }
 };
 </script>
 
